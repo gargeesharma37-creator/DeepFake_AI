@@ -1,9 +1,11 @@
 <!DOCTYPE html>
 <html>
+
 <head>
     <title>DeepFake Voice Detector</title>
     <link rel="stylesheet" href="style.css">
 </head>
+
 <body>
 
     <div class="container">
@@ -11,13 +13,22 @@
 
         <input type="file" id="audioFile">
 
-       <button onclick="detectVoice()">
-    Detect Voice
-</button>
-       <p id="result"></p>
+        <button onclick="detectVoice()">
+            Detect Voice
+        </button>
+        <p id="result"></p>
     </div>
 
     <script src="script.js"></script>
+    <h2>🎥 Video Detection</h2>
 
+    <input type="file" id="videoFile">
+
+    <button onclick="detectVideo()">
+        Detect Video
+    </button>
+
+    <p id="videoResult"></p>
 </body>
+
 </html>

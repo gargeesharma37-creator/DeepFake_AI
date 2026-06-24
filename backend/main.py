@@ -1,7 +1,11 @@
-from fastapi import FastAPI
+from fastapi import FastAPI, UploadFile, File
 from backend.voice_detector import predict_voice
+from voice_model.preprocess_audio import extract_mfcc
+import shutil
+from backend.video_detector import detect_video
 
 app = FastAPI()
+
 
 @app.get("/")
 def home():
@@ -9,26 +13,31 @@ def home():
         "message": "DeepFake AI Backend Running"
     }
 
-@app.get("/predict")
-def predict():
-    
-    sample_features = [
-        -247.76,
-        77.11,
-        -10.09,
-        29.62,
-        -6.38,
-        -4.65,
-        -17.60,
-        -14.64,
-        -11.31,
-        -21.16,
-        -8.75,
-        -11.13,
-        -14.56
-    ]
 
-    result = predict_voice(sample_features)
+@app.post("/predict")
+async def predict(file: UploadFile = File(...)):
+    print("PREDICT API HIT")
+    temp_file = f"temp_{file.filename}"
+
+    with open(temp_file, "wb") as buffer:
+        shutil.copyfileobj(file.file, buffer)
+
+    features = extract_mfcc(temp_file)
+
+    result = predict_voice(features)
+
+    return {
+        "prediction": result
+    }
+@app.post("/predict-video")
+async def predict_video_api(file: UploadFile = File(...)):
+
+    temp_file = f"temp_{file.filename}"
+
+    with open(temp_file, "wb") as buffer:
+        shutil.copyfileobj(file.file, buffer)
+
+    result = detect_video(temp_file)
 
     return {
         "prediction": result

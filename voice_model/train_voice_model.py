@@ -5,7 +5,8 @@ from sklearn.metrics import accuracy_score
 from dataset import load_protocol_file
 from preprocess_audio import extract_mfcc
 import joblib
-
+from sklearn.model_selection import train_test_split 
+from sklearn.metrics import classification_report
 protocol_path = r"D:\DeepFake_AI\datasets\audio\LA\ASVspoof2019_LA_cm_protocols\ASVspoof2019.LA.cm.train.trn.txt"
 
 audio_folder = r"D:\DeepFake_AI\datasets\audio\LA\ASVspoof2019_LA_train\flac"
@@ -50,15 +51,23 @@ model = RandomForestClassifier(
     random_state=42
 )
 
-model.fit(X, y)
+X_train, X_test, y_train, y_test = train_test_split(
+    X,
+    y,
+    test_size=0.2,
+    random_state=42,
+    stratify=y
+)
 
-predictions = model.predict(X)
+model.fit(X_train, y_train)
 
-accuracy = accuracy_score(y, predictions)
+predictions = model.predict(X_test)
 
+accuracy = accuracy_score(y_test, predictions)
 print("Accuracy:", accuracy)
-print("X shape:", X.shape)
-print("y shape:", y.shape)
+print(classification_report(y_test, predictions))
+print("Training samples:", len(X_train))
+print("Testing samples:", len(X_test))
 joblib.dump(
     model,
     r"D:\DeepFake_AI\saved_models\voice_model.pkl"

@@ -1,0 +1,10 @@
+venv/
+datasets/
+LA.zip
+
+__pycache__/
+*.pyc
+
+saved_models/
+
+.vscode/

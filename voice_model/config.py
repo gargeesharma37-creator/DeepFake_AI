@@ -1,0 +1,12 @@
+# Audio Settings
+SAMPLE_RATE = 16000
+MFCC_FEATURES = 40
+MAX_AUDIO_LENGTH = 5
+
+# Training Settings
+BATCH_SIZE = 32
+EPOCHS = 10
+LEARNING_RATE = 0.001
+
+# Model Settings
+NUM_CLASSES = 2

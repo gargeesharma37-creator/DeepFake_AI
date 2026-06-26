@@ -24,8 +24,9 @@ async function detectVoice() {
         const data = await response.json();
 
         result.innerText =
-            "Prediction: " + data.prediction;
-
+            "Prediction: " + data.prediction.prediction +
+            " | Real: " + data.prediction.real_percentage + "%" +
+            " | Fake: " + data.prediction.fake_percentage + "%";
     }
     catch (error) {
 
@@ -39,7 +40,7 @@ async function detectVoice() {
 
 async function detectVideo() {
 
-    alert("Video button clicked");
+
 
     const fileInput =
         document.getElementById("videoFile");

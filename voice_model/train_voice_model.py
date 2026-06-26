@@ -12,11 +12,11 @@ protocol_path = r"D:\DeepFake_AI\datasets\audio\LA\ASVspoof2019_LA_cm_protocols\
 audio_folder = r"D:\DeepFake_AI\datasets\audio\LA\ASVspoof2019_LA_train\flac"
 
 df = load_protocol_file(protocol_path)
-
+print("Total samples:", len(df))
 X = []
 y = []
 
-for index, row in df.head(500).iterrows():
+for index, row in df.head(10000).iterrows():
 
     file_name = row["file_name"]
     label = row["label"]

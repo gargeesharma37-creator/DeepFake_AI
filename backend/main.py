@@ -39,6 +39,7 @@ async def predict_video_api(file: UploadFile = File(...)):
 
     result = detect_video(temp_file)
 
+   
     return {
-        "prediction": result
-    }
+    "prediction": result
+}

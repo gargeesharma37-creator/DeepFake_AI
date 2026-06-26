@@ -5,9 +5,21 @@ model = joblib.load(
 )
 
 def predict_voice(features):
-    prediction = model.predict([features])
 
-    if prediction[0] == 0:
-        return "BONAFIDE"
+    prediction = model.predict([features])[0]
+
+    #probabilities = model.predict_proba([features])[0]
+
+    if prediction == 0:
+        return {
+            "prediction": "BONAFIDE",
+            "real_percentage": 100,
+            "fake_percentage": 0
+        }
+
     else:
-        return "SPOOF"
+        return {
+            "prediction": "SPOOF",
+            "real_percentage": 0,
+            "fake_percentage": 100
+        }

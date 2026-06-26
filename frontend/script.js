@@ -22,11 +22,21 @@ async function detectVoice() {
         );
 
         const data = await response.json();
+        console.log(data);
+
+        let label = "";
+
+        if (data.prediction === "BONAFIDE") {
+            label = "🟢 REAL";
+        }
+        else {
+            label = "🔴 FAKE";
+        }
 
         result.innerText =
-            "Prediction: " + data.prediction.prediction +
-            " | Real: " + data.prediction.real_percentage + "%" +
-            " | Fake: " + data.prediction.fake_percentage + "%";
+            label +
+            " | Real: " + data.real_percentage + "%" +
+            " | Fake: " + data.fake_percentage + "%";
     }
     catch (error) {
 

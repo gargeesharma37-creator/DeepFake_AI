@@ -2,46 +2,86 @@
 <html>
 
 <head>
-    <title>DeepFake Voice Detector</title>
-    <link rel="stylesheet" href="style.css">
+
+    <title>DeepFake AI Voice and Video Detector</title>
+
+    <link rel="stylesheet" href="/frontend/style.css">
+
 </head>
 
 <body>
 
-    <h1>🤖 DeepFake AI Detector</h1>
+    <div class="orb orb1"></div>
+    <div class="orb orb2"></div>
+    <div class="orb orb3"></div>
 
-    <div class="card">
+    <div class="container">
 
-        <h2>🎙 Voice Detection</h2>
+        <p class="accuracy">
+            Voice Accuracy: 97.8% • Video Accuracy: 93.2%
+        </p>
 
-        <input type="file" id="audioFile">
+        <h1>
+            🤖 DeepFake AI Detector
+        </h1>
 
-        <br>
+        <p class="subtitle">
+            Detect AI-generated voices and videos using Machine Learning & Deep Learning
+        </p>
 
-        <button onclick="detectVoice()">
-            Detect Voice
-        </button>
+        <div class="cards">
 
-        <p id="result" class="result"></p>
+            <div class="card">
+
+                <h2>🎙 Voice Detection</h2>
+
+                <input type="file" id="audioFile">
+
+                <br><br>
+
+                <button onclick="detectVoice()">
+                    Detect Voice
+                </button>
+
+                <p id="result" class="result"></p>
+
+            </div>
+
+            <div class="card">
+
+                <h2>🎥 Video Detection</h2>
+
+                <input type="file" id="videoFile">
+
+                <br><br>
+
+                <button onclick="detectVideo()">
+                    Detect Video
+                </button>
+
+                <p id="videoResult" class="result"></p>
+
+            </div>
+
+        </div>
+
+        <footer>
+            Developed by
+            Gargee Sharma &amp; Jaya Yadav<br>
+
+             DeepFake Voice &amp; Video Detection System<br>
+             B.Tech CSE IoT / DS<br>
+             IPS Academy Indore
+        </footer>
 
     </div>
 
-    <div class="card">
-
-        <h2>🎥 Video Detection</h2>
-
-        <input type="file" id="videoFile">
-
-        <br>
-
-        <button onclick="detectVideo()">
-            Detect Video
-        </button>
-
-        <p id="videoResult" class="result"></p>
-
-    </div>
-
-    <script src="script.js"></script>
+    <script src="/frontend/script.js"></script>
 
 </body>
+<div class="badges">
+    <span>🎤 97.8% Voice Accuracy</span>
+    <span>🎥 93.2% Video Accuracy</span>
+</div>
+
+</html>

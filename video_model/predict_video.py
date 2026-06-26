@@ -18,8 +18,6 @@ def predict_video(video_path):
 
         success, frame = cap.read()
 
-        print("Success:", success)
-
         if not success:
            break
 
@@ -32,17 +30,13 @@ def predict_video(video_path):
         frame = frame / 255.0
 
         frame = np.expand_dims(frame, axis=0)
-        print("Frame shape:", frame.shape)
         prediction = model.predict(
             frame,
             verbose=0
         )[0][0]
-        print("Prediction value:", prediction)
         predictions.append(prediction)
 
     cap.release()
-
-    print("Predictions collected:", len(predictions))
 
     if len(predictions) == 0:
 

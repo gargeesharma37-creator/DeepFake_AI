@@ -3,15 +3,19 @@ from backend.voice_detector import predict_voice
 from voice_model.preprocess_audio import extract_mfcc
 import shutil
 from backend.video_detector import detect_video
-
+from fastapi.responses import FileResponse
+from fastapi.staticfiles import StaticFiles
 app = FastAPI()
-
-
+app.mount(
+    "/frontend",
+    StaticFiles(directory=r"D:\DeepFake_AI\frontend"),
+    name="frontend"
+)
 @app.get("/")
 def home():
-    return {
-        "message": "DeepFake AI Backend Running"
-    }
+    return FileResponse(
+        r"D:\DeepFake_AI\frontend\index.html"
+    )
 
 
 @app.post("/predict")
@@ -23,12 +27,10 @@ async def predict(file: UploadFile = File(...)):
         shutil.copyfileobj(file.file, buffer)
 
     features = extract_mfcc(temp_file)
-
     result = predict_voice(features)
 
-    return {
-        "prediction": result
-    }
+    return result
+    
 @app.post("/predict-video")
 async def predict_video_api(file: UploadFile = File(...)):
 

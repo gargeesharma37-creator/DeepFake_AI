@@ -76,7 +76,9 @@ async function detectVideo() {
         const data = await response.json();
 
         result.innerText =
-            data.prediction;
+            "Prediction: " + data.prediction +
+            " | Real: " + data.real_percentage + "%" +
+            " | Fake: " + data.fake_percentage + "%";
 
     }
 

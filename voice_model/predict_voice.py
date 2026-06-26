@@ -11,8 +11,8 @@ prediction = model.predict([features])
 probabilities = model.predict_proba([features])
 confidence = max(probabilities[0]) * 100
 if prediction[0] == 0:
-    print("Prediction: BONAFIDE (REAL)")
+    print("Prediction: REAL (REAL)")
 else:
-    print("Prediction: SPOOF (FAKE)")
+    print("Prediction: FAKE (FAKE)")
 
 print("Confidence:", round(confidence, 2), "%")
